@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HengkiDev - Backend Developer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes slideInRight {
+            0% { 
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInLinks {
+            0% { 
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e6f2ff 0%, #b3d9ff 100%);
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            animation: slideIn 1s ease-out;
+        }
+
+        .profile-image {
+            animation: float 4s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                height: 100%;
+                background: rgba(59, 130, 246, 0.95);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 50;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+            }
+
+            .nav-menu.active {
+                right: 0;
+                animation: slideInRight 0.5s forwards;
+            }
+
+            .nav-menu a {
+                color: white !important;
+                margin: 15px 0;
+                font-size: 1.5rem;
+                opacity: 0;
+                transform: translateX(30px);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .nav-menu.active a {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .nav-menu a:nth-child(1) { transition-delay: 0.1s; }
+            .nav-menu a:nth-child(2) { transition-delay: 0.2s; }
+            .nav-menu a:nth-child(3) { transition-delay: 0.3s; }
+            .nav-menu a:nth-child(4) { transition-delay: 0.4s; }
+            .nav-menu a:nth-child(5) { transition-delay: 0.5s; }
+
+            .burger-menu {
+                display: block;
+                z-index: 60;
+            }
+        }
+        
+        .skill-card {
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .skill-card:hover::before {
+            left: 100%;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .tech-badge {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tech-badge:hover {
+            transform: scale(1.05);
+            background-color: #FED7AA !important; /* lighter orange */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .story-section {
+            border-width: 10%;
+            border-image: linear-gradient(to right, #3B82F6, #60A5FA) 1;
+        }
+    </style>
+</head>
+<body class="relative">
+    <div class="container mx-auto px-4 py-8">
+        <nav class="flex justify-between items-center mb-12 relative">
+            <div class="text-2xl font-bold text-blue-600">PORTFOLIO</div>
+            
+            <!-- Burger Menu Icon -->
+            <div class="burger-menu hidden cursor-pointer absolute right-0 top-0">
+                <i id="menuToggle" class="fas fa-bars text-2xl text-blue-600"></i>
+            </div>
+
+            <!-- Navigation Menu -->
+            <div class="nav-menu flex space-x-4 md:space-x-4 items-center">
+                <a href="#" class="text-gray-700 hover:text-blue-600">Home</a>
+                <a href="#" class="text-gray-700 hover:text-blue-600">About</a>
+                <a href="#" class="text-gray-700 hover:text-blue-600">Projects</a>
+                <a href="#" class="text-gray-700 hover:text-blue-600">Skills</a>
+                <a href="#" class="text-gray-700 hover:text-blue-600">Contact</a>
+            </div>
+        </nav>
+
+        <div class="hero-section grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <div class="bg-blue-500 text-white px-4 py-2 inline-block mb-4 rounded">
+                    Hello, Good morning!
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    I'M HENGKI <br>
+                    <span class="text-blue-600">DEV</span>, 
+                    BACKEND DEVELOPER
+                </h1>
+                <p class="text-gray-600 mb-8">
+                    I am a 10th grade student at SMK 1 Bintan Timur and I 
+                    am very interested in technology and programming languages.
+                </p>
+                <div class="space-x-4">
+                    <a href="#" class="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition inline-block">
+                        View My Work →
+                    </a>
+                    <a href="#" class="bg-gray-200 text-gray-800 px-6 py-3 rounded hover:bg-gray-300 transition inline-block">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="flex justify-center mt-8 md:mt-0">
+                <div class="relative">
+                    <div class="w-64 h-64 bg-blue-300 absolute -top-4 -left-4 rounded-lg"></div>
+                    <img src="/img/furina.png" alt="Profile" class="profile-image relative z-10 rounded-lg  object-cover">
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="container mx-auto px-4 py-12 md:py-16 story-section">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <!-- Image Column -->
+            <div class="flex justify-center order-2 md:order-1">
+                <div class="relative group w-full max-w-xs mx-auto">
+                    <div class="absolute -top-4 -left-4 w-full h-full bg-blue-200 rounded-lg transform transition-transform duration-300 group-hover:-translate-y-2 group-hover:-translate-x-2 opacity-70"></div>
+                    <div class="relative z-10">
+                        <img src="/img/reina.png" alt="Profile" class="rounded-lg w-full aspect-square object-cover shadow-lg transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Story Column -->
+            <div class="order-1 md:order-2 text-center md:text-left">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-blue-800 inline-block border-b-4 border-blue-500 pb-2">MY STORY</h2>
+                <p class="text-gray-700 mb-6 md:mb-8 leading-relaxed text-sm md:text-base">
+                    Hi, I'm Hengki , a 10th grade student at SMK 1 Bintan Timur. I've been passionate about coding since I was in 6th grade. Over the years, I have developed strong skills in JavaScript, PHP, and Python.
+                </p>
+                
+                <!-- Experience Highlights with Enhanced Design -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+                    <div class="skill-card bg-white p-4 md:p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-blue-500">
+                        <div class="flex items-center mb-2 md:mb-3">
+                            <i class="fas fa-laptop-code text-blue-600 text-2xl md:text-3xl mr-3 md:mr-4"></i>
+                            <div>
+                                <div class="text-2xl md:text-3xl font-bold text-blue-600">5+</div>
+                                <div class="text-gray-600 font-medium text-sm md:text-base">Years Experience</div>
+                            </div>
+                        </div>
+                        <p class="text-xs md:text-sm text-gray-500">Working in web development</p>
+                    </div>
+                    <div class="skill-card bg-white p-4 md:p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-l-4 border-blue-500">
+                        <div class="flex items-center mb-2 md:mb-3">
+                            <i class="fas fa-project-diagram text-blue-600 text-2xl md:text-3xl mr-3 md:mr-4"></i>
+                            <div>
+                                <div class="text-2xl md:text-3xl font-bold text-blue-600">10+</div>
+                                <div class="text-gray-600 font-medium text-sm md:text-base">Projects Completed</div>
+                            </div>
+                        </div>
+                        <p class="text-xs md:text-sm text-gray-500">Across various industries</p>
+                    </div>
+                </div>
+
+                <!-- Download Resume Button -->
+                <div class="flex justify-center md:justify-start">
+                    <a href="#" class="inline-block px-6 md:px-8 py-2 md:py-3 bg-blue-600 text-white rounded-full font-semibold 
+                                       hover:bg-blue-700 transition-all duration-300 ease-in-out 
+                                       transform hover:scale-105 hover:shadow-lg text-sm md:text-base">
+                        <i class="fas fa-download mr-2"></i>Download Resume
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Updated Skills Section -->
+    <section class="container mx-auto px-4 py-12 md:py-16 story-section">
+    <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-indigo-800 mb-4">My Skills</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+            I specialize in building modern web applications using the latest technologies. My expertise includes backend development, frontend design, and creating seamless user experiences.
+        </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Technical Expertise Column -->
+        <div class="skill-card bg-white p-6 rounded-xl shadow-lg border-l-4 border-indigo-500 transform transition-all hover:scale-105 hover:shadow-xl">
+            <div class="flex items-center mb-4">
+                <i class="fas fa-code text-indigo-600 text-3xl mr-4"></i>
+                <h3 class="text-2xl font-bold text-indigo-800">Technical Expertise</h3>
+            </div>
+            
+            <div class="mb-4">
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-700 font-medium">Backend Development</span>
+                    <span class="text-indigo-600 font-bold">90%</span>
+                </div>
+                <div class="w-full bg-indigo-100 rounded-full h-3">
+                    <div class="bg-indigo-500 h-3 rounded-full" style="width: 90%"></div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-700 font-medium">Frontend Development</span>
+                    <span class="text-indigo-600 font-bold">75%</span>
+                </div>
+                <div class="w-full bg-indigo-100 rounded-full h-3">
+                    <div class="bg-indigo-500 h-3 rounded-full" style="width: 75%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Technologies Column -->
+        <div class="skill-card bg-white p-6 rounded-xl shadow-lg border-l-4 border-emerald-500 transform transition-all hover:scale-105 hover:shadow-xl">
+            <div class="flex items-center mb-4">
+                <i class="fas fa-laptop-code text-emerald-600 text-3xl mr-4"></i>
+                <h3 class="text-2xl font-bold text-emerald-800">Technologies I Work With</h3>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-4">
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    JavaScript
+                </div>
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    TypeScript
+                </div>
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    React
+                </div>
+                
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    Next.js
+                </div>
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    Node.js
+                </div>
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    Tailwind CSS
+                </div>
+                
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    HTML5
+                </div>
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    CSS3
+                </div>
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    Git
+                </div>
+                
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    Figma
+                </div>
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    MongoDB
+                </div>
+                <div class="tech-badge bg-emerald-50 text-emerald-700 text-center py-2 rounded-md 
+                            hover:bg-emerald-100 hover:text-emerald-800 transition-all 
+                            transform hover:scale-105 shadow-sm hover:shadow-md">
+                    PostgreSQL
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+    <section id="contact" class="container mx-auto px-4 py-12 md:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto items-center">
+            <!-- Contact Info Column -->
+            <div>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded mb-4">Get In Touch</button>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-blue-800">LET'S WORK TOGETHER</h2>
+                <p class="text-gray-600 mb-8">
+                    Have a project in mind? I'd love to hear about it. 
+                    Send me a message and let's create something amazing together.
+                </p>
+                
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-blue-600 mr-4 text-2xl"></i>
+                        <span class="text-gray-700">contact@hengkidev.my.id</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-map-marker-alt text-blue-600 mr-4 text-2xl"></i>
+                        <span class="text-gray-700">Bintan, Riau Island, Indonesia</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-phone text-blue-600 mr-4 text-2xl"></i>
+                        <span class="text-gray-700">+62 815-3XXX-XXXX</span>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="text-blue-600 hover:text-blue-800 transition">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 transition">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 transition">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-blue-600 hover:text-blue-800 transition">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Contact Form Column -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <form action="#" method="POST" class="space-y-4">
+                    <div>
+                        <label for="name" class="block text-gray-700 mb-2">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" 
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 mb-2">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" 
+                               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 mb-2">Message</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Your message here..."
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                    <button type="submit" 
+                            class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition duration-300">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Brand Column -->
+            <div>
+                <div class="flex items-center mb-4">
+                    <div class="text-3xl font-bold mr-2">Hengki</div>
+                    <div class="bg-white text-blue-600 px-2 py-1 rounded text-sm">DEV</div>
+                </div>
+                <p class="text-blue-100 mb-4">
+                    Crafting digital solutions with passion and precision. Transforming ideas into innovative web experiences.
+                </p>
+                <div class="flex space-x-3">
+                    <a href="#" class="bg-white/20 hover:bg-white/30 p-2 rounded-full transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="bg-white/20 hover:bg-white/30 p-2 rounded-full transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="bg-white/20 hover:bg-white/30 p-2 rounded-full transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="bg-white/20 hover:bg-white/30 p-2 rounded-full transition">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigation Column -->
+            <div>
+                <h4 class="text-xl font-semibold mb-4 border-b-2 border-white/30 pb-2">Quick Links</h4>
+                <div class="grid grid-cols-2 gap-2">
+                    <a href="#" class="text-blue-100 hover:text-white transition flex items-center">
+                        <i class="fas fa-chevron-right mr-2 text-sm"></i>Home
+                    </a>
+                    <a href="#" class="text-blue-100 hover:text-white transition flex items-center">
+                        <i class="fas fa-chevron-right mr-2 text-sm"></i>About
+                    </a>
+                    <a href="#" class="text-blue-100 hover:text-white transition flex items-center">
+                        <i class="fas fa-chevron-right mr-2 text-sm"></i>Projects
+                    </a>
+                    <a href="#" class="text-blue-100 hover:text-white transition flex items-center">
+                        <i class="fas fa-chevron-right mr-2 text-sm"></i>Skills
+                    </a>
+                    <a href="#" class="text-blue-100 hover:text-white transition flex items-center">
+                        <i class="fas fa-chevron-right mr-2 text-sm"></i>Contact
+                    </a>
+                    <a href="#" class="text-blue-100 hover:text-white transition flex items-center">
+                        <i class="fas fa-chevron-right mr-2 text-sm"></i>Resume
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact Column -->
+            <div>
+                <h4 class="text-xl font-semibold mb-4 border-b-2 border-white/30 pb-2">Contact Me</h4>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope mr-3 text-xl"></i>
+                        <span class="text-blue-100">contact@hengkidev.my.id</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-map-marker-alt mr-3 text-xl"></i>
+                        <span class="text-blue-100">Bintan, Riau Island, Indonesia</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-phone mr-3 text-xl"></i>
+                        <span class="text-blue-100">+62 815-3XXX-XXXX</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-8 pt-6 border-t border-white/20 text-center">
+            <p class="text-blue-100">
+                © 2025 Hengki Dev. All rights reserved. Designed with ❤️ by Hengki
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Burger Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Toggle menu icon
+            if (navMenu.classList.contains('active')) {
+                menuToggle.classList.remove('fa-bars');
+                menuToggle.classList.add('fa-times');
+            } else {
+                menuToggle.classList.remove('fa-times');
+                menuToggle.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.classList.remove('fa-times');
+                menuToggle.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
