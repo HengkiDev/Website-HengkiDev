@@ -57,35 +57,8 @@
             el.style.opacity = '1';
         });
     });
-    window.addEventListener('scroll', () => { checkScroll(); });
-
-    // FIX: Matiin efek kuning di mobile dan cegah scroll cacat
-    const clickableElements = document.querySelectorAll('.project-card, .owner-card, button, a, .nav-links a, .logo span');
     
-    clickableElements.forEach(el => {
-        el.addEventListener('touchstart', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            setTimeout(() => {
-                this.click();
-            }, 10);
-        }, { passive: false });
-    });
-
-    document.body.addEventListener('touchmove', function(e) {
-        if (document.body.scrollWidth > window.innerWidth) {
-            e.preventDefault();
-        }
-    }, { passive: false });
-
-    const allCards = document.querySelectorAll('.project-card, .owner-card');
-    allCards.forEach(card => {
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', function(e) {
-            const link = this.querySelector('a');
-            if (link && link.href && !e.target.closest('a')) {
-                window.open(link.href, '_blank');
-            }
-        });
+    window.addEventListener('scroll', () => { 
+        checkScroll(); 
     });
 })();
