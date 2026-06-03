@@ -2,7 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent !important;
+    tap-highlight-color: transparent !important;
 }
 
 :root {
@@ -178,6 +179,19 @@ h2 {
     display: inline-block;
 }
 
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--yellow);
+    transition: width 0.5s ease;
+}
+
+.animate-item.show h2::after { width: 100%; }
+
 h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 
 .highlight {
@@ -211,6 +225,7 @@ button {
     padding: 8px 16px;
     cursor: pointer;
     text-transform: uppercase;
+    box-shadow: 4px 4px 0 var(--black);
     transition: all 0.2s ease;
 }
 
@@ -239,6 +254,12 @@ button:active {
     height: 100%;
     display: flex;
     flex-direction: column;
+    transition: all 0.2s ease;
+}
+
+.project-card:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--black);
 }
 
 .project-img {
@@ -278,6 +299,11 @@ button:active {
     box-shadow: 8px 8px 0 var(--blue);
     position: relative;
     overflow: hidden;
+}
+
+.hero-visual:active {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0 var(--blue);
 }
 
 @media (min-width: 640px) { .hero-visual { height: 250px; } }
@@ -356,6 +382,12 @@ button:active {
     height: 100%;
     display: flex;
     flex-direction: column;
+    transition: all 0.2s ease;
+}
+
+.owner-card:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--black);
 }
 
 .owner-card h3 {
@@ -402,6 +434,11 @@ button:active {
     text-align: center;
 }
 
+.cta-section:active {
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 var(--red);
+}
+
 .cta-section h2 {
     color: var(--yellow);
     text-decoration-color: var(--yellow);
@@ -417,6 +454,7 @@ button:active {
 .btn-join, .btn-store {
     background: var(--yellow);
     border: 4px solid var(--black);
+    box-shadow: 4px 4px 0 var(--black);
 }
 
 .btn-store { background: var(--white); }
@@ -479,6 +517,12 @@ hr {
     overflow-x: hidden;
 }
 
+a, div, button, .project-card, .owner-card, .hero-visual, .cta-section {
+    -webkit-tap-highlight-color: transparent !important;
+    tap-highlight-color: transparent !important;
+    outline: none !important;
+}
+
 @media (max-width: 640px) {
     button:active {
         transform: translate(2px, 2px);
@@ -494,5 +538,10 @@ hr {
     img, .project-img, .hero-visual {
         max-width: 100%;
         display: block;
+    }
+    
+    .project-card:active, .owner-card:active {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0 var(--black);
     }
 }
